@@ -16,13 +16,18 @@ and open the template in the editor.
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body onLoad="">
+    <div>Pagina Inicial</div>
 	<h1>Acceso con Auth02</h1>
       <div class="container unauthenticated">
           Registro Con GitHub: <a href="/oauth2/authorization/github">click here</a>
      </div>
     <div class="container authenticated" style="display:none">
         Registrado con el usuario de: <span id="user"></span>
+        <p id="aplica">Iniciar Aplicacion <a href="/iniciar.html">Aqui</a>
+        </p>
+        <div> <button onClick="logout()" class="btn btn-primary">Logout</button>
+        </div>
     </div>
 <script type="text/javascript">
     $.get("/user", function(data) {
@@ -32,6 +37,14 @@ and open the template in the editor.
     });
 </script>
 
+<script type="text/javascript">
+    var logout = function (){
+    $.post("/logout", function (data) {
+        $("#user").html('');
+        $(".unauthenticated").show()
+        $(".authenticated").hide()
+    });}
+</script>
 
 </body>
 </html>

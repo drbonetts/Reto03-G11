@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="application/json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>USA - Grupo11 - Ciclo03</title>
+</head>
+
+<body onLoad="pintarSelect()" bgcolor="FFCEBC">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/scoreFunciones.js"></script>
+    <h1>RETO 4</h1>
+    <h2>Alquiler de motocicletas.</h2>
+    <h3>TABLA CALIFICACION DE RESERVAS:</h3>
+    <div>
+        <input type="hidden" id="idScore" placeholder="idScore">
+        <input type="text" id="messageText" placeholder="messageText">
+        <input type="number" id="qualification" placeholder="qualification">
+        <select id="reservations"></select>
+    </div>
+    <button onclick="traerInformacion()">Consultar</button>
+    <button onclick="guardarInformacion()">Guardar</button>
+    <button onclick="actualizarInformacion()">Actualizar</button>
+    <br></br>
+    <h5> MESSAGETEXT / QUALIFICATION / RESERVATION</h5>
+    <div id="resultado"></div>
+    <H5><a href="index.html"> - Regresar</A> </H5>
+</body>
+
+</html>

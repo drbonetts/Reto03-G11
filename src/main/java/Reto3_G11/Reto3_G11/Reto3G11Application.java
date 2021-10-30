@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 public class Reto3G11Application {
 
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		SpringApplication.run(Reto3G11Application.class, args);
 	}
 

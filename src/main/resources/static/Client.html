@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="application/json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>USA - Grupo11 - Ciclo03</title>
+</head>
+
+<body bgcolor="BCDAFF">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/clientFunciones.js"></script>
+    <h1>RETO 4</h1>
+    <h2>Alquiler de motocicletas.</h2>
+    <h3>TABLA CLIENTE:</h3>
+    <div>
+        <input type="hidden" id="idClient" placeholder="idClient">
+        <input type="text" id="email" placeholder="email">
+        <input type="text" id="password" placeholder="password">
+        <input type="text" id="name" placeholder="name">
+        <input type="number" id="age" placeholder="age">
+    </div>
+    <button onclick="traerInformacion()">Consultar</button>
+    <button onclick="guardarInformacion()">Guardar</button>
+    <button onclick="actualizarInformacion()">Actualizar</button>
+    <br></br>
+    <h6>ID / EMAIL / NAME / AGE /</h6>
+    <div id="resultado"></div>
+    <H5><a href="index.html"> - Regresar</A> </H5>
+</body>
+
+</html>
