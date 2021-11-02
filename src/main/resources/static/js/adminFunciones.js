@@ -1,6 +1,6 @@
 function traerInformacion() {
     $.ajax({
-        url: 'http://150.230.77.12/api/Admin/all',
+        url: 'http://localhost/api/Admin/all',
         type: 'GET',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
@@ -8,18 +8,31 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                miTabla += '<td>' + respuesta[i].idAdmin + '</td>';
-                miTabla += '<td>' + respuesta[i].email + '</td>';
-                //miTabla += '<td>' + respuesta[i].password + '</td>';
-                miTabla += '<td>' + respuesta[i].name + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idAdmin+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idAdmin+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].idAdmin}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].name}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].email}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].idAdmin} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].idAdmin} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+                // miTabla += '<tr>';
+                // miTabla += '<td>' + respuesta[i].idAdmin + '</td>';
+                // miTabla += '<td>' + respuesta[i].email + '</td>';
+                // //miTabla += '<td>' + respuesta[i].password + '</td>';
+                // miTabla += '<td>' + respuesta[i].name + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idAdmin+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idAdmin+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
         },
         error: function (xhr, status) {
@@ -38,7 +51,7 @@ function guardarInformacion(){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://150.230.77.12/api/Admin/save',
+        url: 'http://localhost/api/Admin/save',
 	    data: datosJson,
         type : 'POST',
         dataType : 'json',
@@ -60,13 +73,13 @@ function guardarInformacion(){
 
 function editarRegistro (id){
 	$.ajax({    
-    url : 'http://150.230.77.12/api/Admin/'+id,
+    url : 'http://localhost/api/Admin/'+id,
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
   
     success : function(respuesta) {
-		console.log(respuesta+ "url" + "http://150.230.77.12/api/Admin/"+id);
+		console.log(respuesta+ "url" + "http://localhost/api/Admin/"+id);
         let miTabla = '<table>';
             $("#idAdmin").val(respuesta.idAdmin);
 			$("#email").val(respuesta.email);
@@ -91,7 +104,7 @@ function actualizarInformacion(){
 	let datosJson = JSON.stringify(misDatos); 
 
 	$.ajax(    
-    'http://150.230.77.12/api/Admin/update',
+    'http://localhost/api/Admin/update',
 	{data: datosJson,
     type : 'PUT',
     dataType : 'json',
@@ -119,7 +132,7 @@ function eliminarInformacion(id){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://150.230.77.12/api/Admin/'+id,  
+        url: 'http://localhost/api/Admin/'+id,  
 	    data: datosJson,
         type : 'DELETE',
         dataType : 'json',

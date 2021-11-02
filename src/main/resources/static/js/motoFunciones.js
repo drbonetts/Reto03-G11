@@ -1,6 +1,6 @@
 function traerInformacion() {
     $.ajax({
-        url: 'http://150.230.77.12/api/Motorbike/all',
+        url: 'http://localhost/api/Motorbike/all',
         type: 'GET',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
@@ -8,21 +8,36 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                //miTabla += '<td>' + respuesta[i].id + '</td>';
-                miTabla += '<td>' + respuesta[i].name + '</td>';
-                miTabla += '<td>' + respuesta[i].brand + '</td>';
-                miTabla += '<td>' + respuesta[i].year + '</td>';
-                miTabla += '<td>' + respuesta[i].description + '</td>';
-                miTabla += '<td>' + respuesta[i].category.name + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].id+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].id+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].name}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].brand} - ${respuesta[i].year}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].description} <br> 		
+														  ${respuesta[i].category.name}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].id} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].id} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+                // miTabla += '<tr>';
+                // //miTabla += '<td>' + respuesta[i].id + '</td>';
+                // miTabla += '<td>' + respuesta[i].name + '</td>';
+                // miTabla += '<td>' + respuesta[i].brand + '</td>';
+                // miTabla += '<td>' + respuesta[i].year + '</td>';
+                // miTabla += '<td>' + respuesta[i].description + '</td>';
+                // miTabla += '<td>' + respuesta[i].category.name + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].id+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].id+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
+            //pintarSelect(0);
         },
         error: function (xhr, status) {
             alert('ha sucedido un problema:' + status);
@@ -43,7 +58,7 @@ function guardarInformacion(){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://150.230.77.12/api/Motorbike/save',
+        url: 'http://localhost/api/Motorbike/save',
 	    data: datosJson,
         type : 'POST',
         dataType : 'json',
@@ -67,13 +82,13 @@ function guardarInformacion(){
 
 function editarRegistro (id){
 	$.ajax({    
-    url : 'http://150.230.77.12/api/Motorbike/'+id,
+    url : 'http://localhost/api/Motorbike/'+id,
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
   
     success : function(respuesta) {
-		console.log(respuesta+ "url" + "http://150.230.77.12/api/Motorbike/"+id);
+		console.log(respuesta+ "url" + "http://localhost/api/Motorbike/"+id);
         let miTabla = '<table>';
             $("#id").val(respuesta.id);
 			$("#name").val(respuesta.name);
@@ -104,7 +119,7 @@ function actualizarInformacion(){
 	let datosJson = JSON.stringify(misDatos); 
 
 	$.ajax(    
-    'http://150.230.77.12/api/Motorbike/update',
+    'http://localhost/api/Motorbike/update',
 	{data: datosJson,
     type : 'PUT',
     dataType : 'json',
@@ -134,7 +149,7 @@ function eliminarInformacion(id){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://150.230.77.12/api/Motorbike/'+id,  
+        url: 'http://localhost/api/Motorbike/'+id,  
 	    data: datosJson,
         type : 'DELETE',
         dataType : 'json',
@@ -157,7 +172,7 @@ function eliminarInformacion(id){
 
 function pintarSelect(){
 	$.ajax({    
-    url : 'http://150.230.77.12/api/Category/all',
+    url : 'http://localhost/api/Category/all',
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",

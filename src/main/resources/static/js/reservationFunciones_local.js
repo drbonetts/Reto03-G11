@@ -10,21 +10,37 @@ function traerInformacion() {
             $("#resultado").empty();
             let horaFechaActuales = new Date();
             var fecha = horaFechaActuales.toLocaleString();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                //miTabla += '<td>' + respuesta[i].idReservation + '</td>';
-                miTabla += '<td>' + respuesta[i].startDate + '</td>';
-                miTabla += '<td>' + respuesta[i].devolutionDate + '</td>';
-                miTabla += '<td>' + respuesta[i].motorbike.name + '</td>';
-                miTabla += '<td>' + respuesta[i].client.name + '</td>';
-                miTabla += '<td>' + respuesta[i].status + '</td>';
-                miTabla += '<td>' + fecha + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idReservation+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idReservation+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].startDate} <br> ${respuesta[i].devolutionDate}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].status}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].motorbike.name} <br> 		
+														  ${respuesta[i].client.name} <br>
+                                                          ${fecha}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].idReservation} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].idReservation} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+
+                // miTabla += '<tr>';
+                // //miTabla += '<td>' + respuesta[i].idReservation + '</td>';
+                // miTabla += '<td>' + respuesta[i].startDate + '</td>';
+                // miTabla += '<td>' + respuesta[i].devolutionDate + '</td>';
+                // miTabla += '<td>' + respuesta[i].motorbike.name + '</td>';
+                // miTabla += '<td>' + respuesta[i].client.name + '</td>';
+                // miTabla += '<td>' + respuesta[i].status + '</td>';
+                // miTabla += '<td>' + fecha + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idReservation+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idReservation+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
         },
         error: function (xhr, status) {
@@ -41,10 +57,11 @@ function guardarInformacion(){
 		idReservation: $("#idReservation").val(),
         startDate: $("#startDate").val(),
         devolutionDate: $("#devolutionDate").val(),
+        status: $("#status").val(),
         motorbike: {id: selected},  
         client: {idClient: selected2}   
 	};
-	let datosJson = JSON.stringify(misDatos); 
+	let datosJson = JSON.stringify(misDatos);
 	$.ajax({    
         url: 'http://localhost/api/Reservation/save',
 	    data: datosJson,
@@ -58,6 +75,7 @@ function guardarInformacion(){
 			$("#idReservation").val("");
             $("#startDate").val("");
 			$("#devolutionDate").val("");
+            $("#status").val("");
             $("#motorbike").val("");
             $("#client").val("");
         	traerInformacion();	
@@ -80,6 +98,7 @@ function editarRegistro (id){
             $("#idReservation").val(respuesta.idReservation);
 			$("#startDate").val(respuesta.startDate);
             $("#devolutionDate").val(respuesta.devolutionDate);
+            $("#status").val(respuesta.status);
 			$("#motorbike").val(respuesta.motorbike.id);
             $("#client").val(respuesta.client.idClient);
             $("#idReservation").attr("readonly", true);
@@ -99,7 +118,8 @@ function actualizarInformacion(){
 	let misDatos = {
         idReservation: $("#idReservation").val(),
         startDate: $("#startDate").val(),
-		devolutionDate: $("#devolutionDate").val()
+		devolutionDate: $("#devolutionDate").val(),
+        status: $("#status").val()
         //motorbike: {id: selected},  
         //client: {idClient: selected2}     
 	};
@@ -118,6 +138,7 @@ function actualizarInformacion(){
             $("#idReservation").val("");
             $("#startDate").val("");
 			$("#devolutionDate").val("");
+            $("#status").val("");
 			$("#motorbike").val("");
             $("#client").val("");
 			$("#idReservation").attr("readonly", false);
@@ -148,6 +169,7 @@ function eliminarInformacion(id){
             $("#idReservation").val("");
             $("#startDate").val("");
 			$("#devolutionDate").val("");
+            $("#status").val("");
             $("#motorbike").val("");
             $("#client").val("");
         	traerInformacion();	

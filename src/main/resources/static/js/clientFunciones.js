@@ -1,6 +1,6 @@
 function traerInformacion() {
     $.ajax({
-        url: 'http://150.230.77.12/api/Client/all',
+        url: 'http://localhost/api/Client/all',
         type: 'GET',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
@@ -8,19 +8,32 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                miTabla += '<td>' + respuesta[i].idClient + '</td>';
-                miTabla += '<td>' + respuesta[i].email + '</td>';
-                //miTabla += '<td>' + respuesta[i].password + '</td>';
-                miTabla += '<td>' + respuesta[i].name + '</td>';
-                miTabla += '<td>' + respuesta[i].age + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idClient+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idClient+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].idClient} - ${respuesta[i].name}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].email}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].age}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].idClient} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].idClient} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+                // miTabla += '<tr>';
+                // miTabla += '<td>' + respuesta[i].idClient + '</td>';
+                // miTabla += '<td>' + respuesta[i].email + '</td>';
+                // //miTabla += '<td>' + respuesta[i].password + '</td>';
+                // miTabla += '<td>' + respuesta[i].name + '</td>';
+                // miTabla += '<td>' + respuesta[i].age + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idClient+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idClient+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
         },
         error: function (xhr, status) {
@@ -40,7 +53,7 @@ function guardarInformacion(){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://150.230.77.12/api/Client/save',
+        url: 'http://localhost/api/Client/save',
 	    data: datosJson,
         type : 'POST',
         dataType : 'json',
@@ -63,13 +76,13 @@ function guardarInformacion(){
 
 function editarRegistro (id){
 	$.ajax({    
-    url : 'http://150.230.77.12/api/Client/'+id,
+    url : 'http://localhost/api/Client/'+id,
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
   
     success : function(respuesta) {
-		console.log(respuesta+ "url" + "http://150.230.77.12/api/Client/"+id);
+		console.log(respuesta+ "url" + "http://localhost/api/Client/"+id);
         let miTabla = '<table>';
             $("#idClient").val(respuesta.idClient);
 			$("#email").val(respuesta.email);
@@ -97,7 +110,7 @@ function actualizarInformacion(){
 	let datosJson = JSON.stringify(misDatos); 
 
 	$.ajax(    
-    'http://150.230.77.12/api/Client/update',
+    'http://localhost/api/Client/update',
 	{data: datosJson,
     type : 'PUT',
     dataType : 'json',
@@ -126,7 +139,7 @@ function eliminarInformacion(id){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://150.230.77.12/api/Client/'+id,  
+        url: 'http://localhost/api/Client/'+id,  
 	    data: datosJson,
         type : 'DELETE',
         dataType : 'json',

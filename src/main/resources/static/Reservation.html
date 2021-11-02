@@ -6,16 +6,27 @@
     <meta http-equiv="Content-Type" content="application/json">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+
+        </script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <title>USA - Grupo11 - Ciclo03</title>
 </head>
 
-<body onLoad="pintartodosSelect()" bgcolor="E5FFCC">
+<body onLoad="pintartodosSelect()">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="js/reservationFunciones.js"></script>
-    <h1>RETO 4</h1>
+    <h1>RETO 5</h1>
     <h2>Alquiler de motocicletas.</h2>
     <h3>TABLA RESERVACION:</h3>
-    <div>
+    <!-- <div>
         <input type="hidden" id="idReservation" placeholder="idReservation">
         <input type="date" id="startDate" placeholder="startDate">
         <input type="date" id="devolutionDate" placeholder="devolutionDate">
@@ -26,7 +37,21 @@
     <button onclick="traerInformacion()">Consultar</button>
     <button onclick="guardarInformacion()">Guardar</button>
     <button onclick="actualizarInformacion()">Actualizar</button>
-    <br></br>
+    <br></br> -->
+
+    <div id="formato" class="form-group container text-center">
+        <input class="form-control m-3" style="width: 18em;" type="hidden" id="idReservation" placeholder="idReservation">
+        <input class="form-control m-3" style="width: 18em;" type="date" id="startDate" placeholder="startDate">
+        <input class="form-control m-3" style="width: 18em;" type="date" id="devolutionDate" placeholder="devolutionDate">
+        <input class="form-control m-3" style="width: 18em;" type="text" id="status" placeholder="status">
+        <select class="form-control m-3" style="width: 18em;" aria-label=".form-select-lg example" id="motorbike" required>
+        </select>
+        <select class="form-control m-3" style="width: 18em;" aria-label=".form-select-lg example" id="client" required>
+        </select>
+        <button class="btn btn-primary mb-3" onclick="traerInformacion()">Consultar</button>
+        <button class="btn btn-primary mb-3" onclick="guardarInformacion()">Guardar</button>
+        <button class="btn btn-primary mb-3" onclick="actualizarInformacion()">Actualizar</button>
+    </div>
     <h6> START_DATE / DEVOLUTION_DATE / MOTORBIKE / CLIENT / STATUS</h6>
     <div id="resultado"></div>
     <H5><a href="inicio.html"> - Regresar</A> </H5>

@@ -8,18 +8,31 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                //miTabla += '<td>' + respuesta[i].idMessage + '</td>';
-                miTabla += '<td>' + respuesta[i].messageText + '</td>';
-                miTabla += '<td>' + respuesta[i].motorbike.name + '</td>';
-                miTabla += '<td>' + respuesta[i].client.name + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idMessage+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idMessage+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].messageText}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].motorbike.name}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].client.name}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].idMessage} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].idMessage} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+                // miTabla += '<tr>';
+                // //miTabla += '<td>' + respuesta[i].idMessage + '</td>';
+                // miTabla += '<td>' + respuesta[i].messageText + '</td>';
+                // miTabla += '<td>' + respuesta[i].motorbike.name + '</td>';
+                // miTabla += '<td>' + respuesta[i].client.name + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idMessage+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idMessage+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
         },
         error: function (xhr, status) {

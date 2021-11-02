@@ -8,18 +8,32 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                //miTabla += '<td>' + respuesta[i].idScore + '</td>';
-                miTabla += '<td>' + respuesta[i].messageText + '</td>';
-                miTabla += '<td>' + respuesta[i].qualification + '</td>';
-                miTabla += '<td>' + respuesta[i].reservations.idReservation + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idScore+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idScore+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].messageText}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].qualification}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].reservations.idReservation}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].idScore} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].idScore} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+
+                // miTabla += '<tr>';
+                // //miTabla += '<td>' + respuesta[i].idScore + '</td>';
+                // miTabla += '<td>' + respuesta[i].messageText + '</td>';
+                // miTabla += '<td>' + respuesta[i].qualification + '</td>';
+                // miTabla += '<td>' + respuesta[i].reservations.idReservation + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idScore+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idScore+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
         },
         error: function (xhr, status) {

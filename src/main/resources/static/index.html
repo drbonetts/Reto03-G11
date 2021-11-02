@@ -8,7 +8,8 @@ and open the template in the editor.
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Demo</title>
+    <title>Prueba CSS y Reportes</title>
+    <meta charset="Windows-1252">
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width"/>
     <base href="/"/>
@@ -38,12 +39,14 @@ and open the template in the editor.
 </script>
 
 <script type="text/javascript">
-    var logout = function (){
-    $.post("/logout", function (data) {
-        $("#user").html('');
-        $(".unauthenticated").show()
-        $(".authenticated").hide()
-    });}
+    var logout = function () {
+        $.post("/logout", function () {
+            $("#user").html('');
+            $(".unauthenticated").show();
+            $(".authenticated").hide();
+        })
+        return true;
+    }
 </script>
 
 </body>

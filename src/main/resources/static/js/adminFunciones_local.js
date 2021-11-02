@@ -8,18 +8,31 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                miTabla += '<td>' + respuesta[i].idAdmin + '</td>';
-                miTabla += '<td>' + respuesta[i].email + '</td>';
-                //miTabla += '<td>' + respuesta[i].password + '</td>';
-                miTabla += '<td>' + respuesta[i].name + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idAdmin+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idAdmin+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].idAdmin}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].name}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].email}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].idAdmin} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].idAdmin} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+                // miTabla += '<tr>';
+                // miTabla += '<td>' + respuesta[i].idAdmin + '</td>';
+                // miTabla += '<td>' + respuesta[i].email + '</td>';
+                // //miTabla += '<td>' + respuesta[i].password + '</td>';
+                // miTabla += '<td>' + respuesta[i].name + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].idAdmin+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].idAdmin+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
         },
         error: function (xhr, status) {

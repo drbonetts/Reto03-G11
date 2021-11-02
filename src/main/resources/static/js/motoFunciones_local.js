@@ -8,21 +8,36 @@ function traerInformacion() {
         success: function (respuesta) {
             console.log(respuesta);
             $("#resultado").empty();
-            let miTabla = '<table>';
+            let miTabla = '<div class="container"><div  class= "row">';
             for (i=0; i<respuesta.length; i++) {
-                miTabla += '<tr>';
-                //miTabla += '<td>' + respuesta[i].id + '</td>';
-                miTabla += '<td>' + respuesta[i].name + '</td>';
-                miTabla += '<td>' + respuesta[i].brand + '</td>';
-                miTabla += '<td>' + respuesta[i].year + '</td>';
-                miTabla += '<td>' + respuesta[i].description + '</td>';
-                miTabla += '<td>' + respuesta[i].category.name + '</td>';
-                miTabla += '<td><button onclick="editarRegistro('+respuesta[i].id+' )">Editar</button>';
-                miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].id+' )">Borrar</button>';
-                miTabla += '</tr>';
+                miTabla += `
+			            	<div class="card m-2" >
+								<div class="card-body" >
+							 
+								   <h5 class ="card-title"> ${respuesta[i].name}</h5> 		
+								   <h6 class ="card-subtitle mb-2 text-muted">  ${respuesta[i].brand} - ${respuesta[i].year}</h6> 		
+								   <p class= "card-text"> ${respuesta[i].description} <br> 		
+														  ${respuesta[i].category.name}</p>
+								   <button class="btn btn-primary" onclick="editarRegistro(${respuesta[i].id} )" >Editar</button>
+								   <button  class="btn btn-danger" onclick="eliminarInformacion(${respuesta[i].id} )">Borrar</button>
+								   
+								</div>
+							</div>
+                       `
+                // miTabla += '<tr>';
+                // //miTabla += '<td>' + respuesta[i].id + '</td>';
+                // miTabla += '<td>' + respuesta[i].name + '</td>';
+                // miTabla += '<td>' + respuesta[i].brand + '</td>';
+                // miTabla += '<td>' + respuesta[i].year + '</td>';
+                // miTabla += '<td>' + respuesta[i].description + '</td>';
+                // miTabla += '<td>' + respuesta[i].category.name + '</td>';
+                // miTabla += '<td><button onclick="editarRegistro('+respuesta[i].id+' )">Editar</button>';
+                // miTabla += '<td><button onclick="eliminarInformacion('+respuesta[i].id+' )">Borrar</button>';
+                // miTabla += '</tr>';
             }
-            miTabla += '</table>';
+            miTabla += '</div></div>';
             $("#resultado").append(miTabla);
+            //pintarSelect(0);
         },
         error: function (xhr, status) {
             alert('ha sucedido un problema:' + status);
