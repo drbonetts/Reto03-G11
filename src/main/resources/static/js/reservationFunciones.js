@@ -1,6 +1,6 @@
 function traerInformacion() {
     $.ajax({
-        url: 'http://localhost/api/Reservation/all',
+        url: 'http://150.230.77.12/api/Reservation/all',
         type: 'GET',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
@@ -63,7 +63,7 @@ function guardarInformacion(){
 	};
 	let datosJson = JSON.stringify(misDatos);
 	$.ajax({    
-        url: 'http://localhost/api/Reservation/save',
+        url: 'http://150.230.77.12/api/Reservation/save',
 	    data: datosJson,
         type : 'POST',
         dataType : 'json',
@@ -87,13 +87,13 @@ function guardarInformacion(){
 
 function editarRegistro (id){
 	$.ajax({    
-    url : 'http://localhost/api/Reservation/'+id,
+    url : 'http://150.230.77.12/api/Reservation/'+id,
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
   
     success : function(respuesta) {
-		console.log(respuesta+ "url" + "http://localhost/api/Reservation/"+id);
+		console.log(respuesta+ "url" + "http://150.230.77.12/api/Reservation/"+id);
         let miTabla = '<table>';
             $("#idReservation").val(respuesta.idReservation);
 			$("#startDate").val(respuesta.startDate);
@@ -126,7 +126,7 @@ function actualizarInformacion(){
 	let datosJson = JSON.stringify(misDatos); 
 
 	$.ajax(    
-    'http://localhost/api/Reservation/update',
+    'http://150.230.77.12/api/Reservation/update',
 	{data: datosJson,
     type : 'PUT',
     dataType : 'json',
@@ -157,7 +157,7 @@ function eliminarInformacion(id){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://localhost/api/Reservation/'+id,  
+        url: 'http://150.230.77.12/api/Reservation/'+id,  
 	    data: datosJson,
         type : 'DELETE',
         dataType : 'json',
@@ -180,7 +180,7 @@ function eliminarInformacion(id){
 
 function pintarSelect(){
 	$.ajax({    
-    url : 'http://localhost/api/Motorbike/all',
+    url : 'http://150.230.77.12/api/Motorbike/all',
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
@@ -205,7 +205,7 @@ function pintarSelect(){
 
 function pintarSelect2(){
 	$.ajax({    
-    url : 'http://localhost/api/Client/all',
+    url : 'http://150.230.77.12/api/Client/all',
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",

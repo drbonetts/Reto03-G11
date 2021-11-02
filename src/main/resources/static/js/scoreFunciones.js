@@ -1,6 +1,6 @@
 function traerInformacion() {
     $.ajax({
-        url: 'http://localhost/api/Score/all',
+        url: 'http://150.230.77.12/api/Score/all',
         type: 'GET',
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
@@ -53,7 +53,7 @@ function guardarInformacion(){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://localhost/api/Score/save',
+        url: 'http://150.230.77.12/api/Score/save',
 	    data: datosJson,
         type : 'POST',
         dataType : 'json',
@@ -75,13 +75,13 @@ function guardarInformacion(){
 
 function editarRegistro (id){
 	$.ajax({    
-    url : 'http://localhost/api/Score/'+id,
+    url : 'http://150.230.77.12/api/Score/'+id,
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
   
     success : function(respuesta) {
-		console.log(respuesta+ "url" + "http://localhost/api/Score/"+id);
+		console.log(respuesta+ "url" + "http://150.230.77.12/api/Score/"+id);
         let miTabla = '<table>';
             $("#idScore").val(respuesta.idScore);
 			$("#messageText").val(respuesta.messageText);
@@ -107,7 +107,7 @@ function actualizarInformacion(){
 	let datosJson = JSON.stringify(misDatos); 
 
 	$.ajax(    
-    'http://localhost/api/Score/update',
+    'http://150.230.77.12/api/Score/update',
 	{data: datosJson,
     type : 'PUT',
     dataType : 'json',
@@ -134,7 +134,7 @@ function eliminarInformacion(id){
 	};
 	let datosJson = JSON.stringify(misDatos); 
 	$.ajax({    
-        url: 'http://localhost/api/Score/'+id,  
+        url: 'http://150.230.77.12/api/Score/'+id,  
 	    data: datosJson,
         type : 'DELETE',
         dataType : 'json',
@@ -155,7 +155,7 @@ function eliminarInformacion(id){
 
 function pintarSelect(){
 	$.ajax({    
-    url : 'http://localhost/api/Reservation/all',
+    url : 'http://150.230.77.12/api/Reservation/all',
     type : 'GET',
     dataType : 'json',
     contentType: "application/json; charset=utf-8",
