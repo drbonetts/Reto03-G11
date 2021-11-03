@@ -7,6 +7,7 @@ package Reto3_G11.Reto3_G11.dao;
 
 import Reto3_G11.Reto3_G11.entities.Reservacion;
 import Reto3_G11.Reto3_G11.entities.ReservacionCrud;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,14 @@ public class ReservacionRepository {
   
   public void delete(Reservacion reservacion){ reservacionCrudRepository.delete(reservacion);}; 
   
-  public List<Object[]> getTopByDates(){
-        return reservacionCrudRepository.countTotalReservationsByDates();
-    }
-    
-  public List<Object[]> getTopByStatus(){
-        return reservacionCrudRepository.countTotalReservationsByStatus();
-    }
- 
+  public List<Reservacion> getTopByDates(Date dateOne, Date dateTwo){
+        return reservacionCrudRepository.findAllByStartDateAfterAndStartDateBefore(dateOne, dateTwo);
+  }
+  
+  public List<Reservacion> getTopByStatus(String Status){
+        return reservacionCrudRepository.findAllByStatus(Status);
+  }
+        
   public List<Object[]> getTopByCLient(){
         return reservacionCrudRepository.countTotalReservationsByClients();
     }

@@ -5,7 +5,6 @@
 package Reto3_G11.Reto3_G11.report;
 
 import Reto3_G11.Reto3_G11.entities.Cliente;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  *
@@ -14,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ReservacionAmount3 {
     
     
-    Long total;
-    Cliente client;
-
+    private Long total;
+    private Cliente client;
+    
     public ReservacionAmount3(Cliente client, Long total) {
         this.client = client;
         this.total = total;
@@ -41,8 +40,5 @@ public class ReservacionAmount3 {
     
     
 
-    
-
-    
     
 }

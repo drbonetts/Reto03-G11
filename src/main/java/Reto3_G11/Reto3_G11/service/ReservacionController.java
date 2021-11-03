@@ -60,14 +60,14 @@ public class ReservacionController {
    
   
     //Report!
-   @GetMapping("/report/{startDate}/{devolutionDate}")
-    public List<ReservacionAmount1> getReportDates(){
-        return reservacionService.getTopReservacionByDates();
+   @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservacion> getReportDates(@PathVariable("dateOne")String d1, @PathVariable("dateTwo")String d2){
+        return reservacionService.getTopReservacionByDates(d1, d2);
     }
     
    
     @GetMapping("/report-status")
-    public List<ReservacionAmount2> getReportStatus(){
+    public ReservacionAmount2 getReportStatus(){
         return reservacionService.getTopReservacionByStatus();
     }
     

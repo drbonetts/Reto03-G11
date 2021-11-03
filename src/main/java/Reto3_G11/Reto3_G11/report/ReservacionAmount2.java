@@ -13,30 +13,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 public class ReservacionAmount2 {
     
-    private String status;
-    private Long total;
+    private Integer completed;
+    private Integer cancelled;
 
-    public ReservacionAmount2(String status, Long total) {
-        this.status = status;
-        this.total = total;
+    public ReservacionAmount2(Integer completed, Integer cancelled) {
+        this.completed = completed;
+        this.cancelled = cancelled;
     }
 
-    public String getStatus() {
-        return status;
+    public Integer getCompleted() {
+        return completed;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCompleted(Integer completed) {
+        this.completed = completed;
     }
 
-    public Long getTotal() {
-        return total;
+    public Integer getCancelled() {
+        return cancelled;
     }
 
-    public void setTotal(Long total) {
-        this.total = total;
+    public void setCancelled(Integer cancelled) {
+        this.cancelled = cancelled;
     }
 
-    
-    
 }

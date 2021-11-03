@@ -10,7 +10,10 @@ import Reto3_G11.Reto3_G11.entities.Reservacion;
 import Reto3_G11.Reto3_G11.report.ReservacionAmount1;
 import Reto3_G11.Reto3_G11.report.ReservacionAmount2;
 import Reto3_G11.Reto3_G11.report.ReservacionAmount3;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,25 +92,34 @@ public class ReservacionService {
     }
     
     
-    public List<ReservacionAmount1> getTopReservacionByDates(){
-        List<Object[]> report1= reservacionRepository.getTopByDates();
-        List<ReservacionAmount1>res1=new ArrayList<>();
-        for(int i=0;i<report1.size();i++){
-            res1.add(new ReservacionAmount1((Reservacion)report1.get(i)[0],(Long) report1.get(i)[1]));
+    public List<Reservacion> getTopReservacionByDates(String d1, String d2){
+        SimpleDateFormat parser=new SimpleDateFormat("yyyy-MM-dd");
+        Date dateOne=new Date();
+        Date dateTwo=new Date();
+        try{
+            dateOne=parser.parse(d1);
+            dateTwo=parser.parse(d2);
         }
-        return res1;
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        if (dateOne.before(dateTwo)){
+        return reservacionRepository.getTopByDates(dateOne, dateTwo);
+        }else{
+            return new ArrayList<>();
+        }
       }
     
     
-    public List<ReservacionAmount2> getTopReservacionByStatus(){
-        List<Object[]> report2= reservacionRepository.getTopByStatus();
-        List<ReservacionAmount2>res2=new ArrayList<>();
-        for(int i=0;i<report2.size();i++){
-            res2.add(new ReservacionAmount2((String)report2.get(i)[0],(Long) report2.get(i)[1]));
-        }
-        return res2;
+    public ReservacionAmount2 getTopReservacionByStatus(){
+        List<Reservacion> completed= reservacionRepository.getTopByStatus("completed");
+        List<Reservacion> cancelled= reservacionRepository.getTopByStatus("cancelled");
+        ReservacionAmount2 res=new ReservacionAmount2(completed.size(), cancelled.size());
+     
+        return res;
       }
   
+    
     public List<ReservacionAmount3> getTopReservacionByCLient(){
         List<Object[]> report3= reservacionRepository.getTopByCLient();
         List<ReservacionAmount3>res3=new ArrayList<>();
