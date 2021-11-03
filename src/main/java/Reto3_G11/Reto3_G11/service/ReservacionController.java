@@ -6,6 +6,9 @@ package Reto3_G11.Reto3_G11.service;
 
 
 import Reto3_G11.Reto3_G11.entities.Reservacion;
+import Reto3_G11.Reto3_G11.report.ReservacionAmount1;
+import Reto3_G11.Reto3_G11.report.ReservacionAmount2;
+import Reto3_G11.Reto3_G11.report.ReservacionAmount3;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +57,23 @@ public class ReservacionController {
    public boolean delete(@PathVariable("id") int Id) {
         return reservacionService.deleteReservacion(Id);
     }
-        
+   
+  
+    //Report!
+   @GetMapping("/report/{startDate}/{devolutionDate}")
+    public List<ReservacionAmount1> getReportDates(){
+        return reservacionService.getTopReservacionByDates();
+    }
+    
+   
+    @GetMapping("/report-status")
+    public List<ReservacionAmount2> getReportStatus(){
+        return reservacionService.getTopReservacionByStatus();
+    }
+    
+    @GetMapping("/report-clients")
+    public List<ReservacionAmount3> getReportCLient(){
+        return reservacionService.getTopReservacionByCLient();
+    }
+      
 }

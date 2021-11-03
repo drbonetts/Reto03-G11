@@ -29,7 +29,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
     	// @formatter:off
         http
             .authorizeRequests(a -> a
-                .antMatchers("/", "/api/Motorbike/**", "/api/Category/**", "/api/Client/**", "/api/Message/**", "/api/Reservation/**", "/api/Score/**", "/api/Admin/**", "/error", "/webjars/**").permitAll()
+                .antMatchers("/", "/h2-console/**", "/api/Motorbike/**", "/api/Category/**", "/api/Client/**", "/api/Message/**", "/api/Reservation/**", "/api/Score/**", "/api/Admin/**", "/error", "/webjars/**").permitAll()
                 .anyRequest().authenticated()
             )
             .exceptionHandling(e -> e

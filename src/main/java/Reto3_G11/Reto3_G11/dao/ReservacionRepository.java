@@ -28,4 +28,16 @@ public class ReservacionRepository {
   public Reservacion save(Reservacion reservacion) { return reservacionCrudRepository.save(reservacion);};
   
   public void delete(Reservacion reservacion){ reservacionCrudRepository.delete(reservacion);}; 
+  
+  public List<Object[]> getTopByDates(){
+        return reservacionCrudRepository.countTotalReservationsByDates();
+    }
+    
+  public List<Object[]> getTopByStatus(){
+        return reservacionCrudRepository.countTotalReservationsByStatus();
+    }
+ 
+  public List<Object[]> getTopByCLient(){
+        return reservacionCrudRepository.countTotalReservationsByClients();
+    }
 }
